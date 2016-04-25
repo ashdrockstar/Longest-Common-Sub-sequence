@@ -23,13 +23,17 @@ public class ExecuteAlgo {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		// Finding LCS using Dynamic programming version of the algorithm
 		DynamicLCS dynamicLCS=new DynamicLCS();
+
+		// Finding LCS using Dynamic programming version of the algorithm
+		NaiveLCS naiveLCS=new NaiveLCS();
+
 		// To randomly generate binary numbers or alphabets
 		Random choice=new Random();
 		// To store input1
 		StringBuffer S1 = new StringBuffer();
 		// To store input2
 		StringBuffer S2 = new StringBuffer();
-		// To stor LCS
+		// To store LCS
 		StringBuffer sub = new StringBuffer();
 		// Counter to keep track of length
 		int ctr=1;
@@ -37,7 +41,8 @@ public class ExecuteAlgo {
 		long cpuTime=0;
 		long startTime;
 		long endTime;
-		FileWriter fileWriter=new FileWriter(new File("DynamicLCSLog.csv"));
+		//FileWriter fileWriter=new FileWriter(new File("DynamicLCSLog.csv"));
+		FileWriter fileWriter=new FileWriter(new File("NaiveLCSLog.csv"));
 		fileWriter.write("CPU Time(ms),Input Length,LCS Length\n");
 		System.out.println("|CPU Time(ms)|\t|Input Length|\t|LCS Length|");
 		// Loop which ends when execution time exceeds 10 seconds
@@ -65,14 +70,14 @@ public class ExecuteAlgo {
 				}
 			}
 			startTime=System.currentTimeMillis();
-			sub=dynamicLCS.findLCS(S1,S2);
+			//sub=dynamicLCS.findLCS(S1,S2);
+			sub=naiveLCS.findLCS(S1,S2);
 			endTime=System.currentTimeMillis();
 			cpuTime=endTime-startTime;
 			System.out.println("|"+cpuTime+"|\t\t|"+ctr+"|\t\t|"+sub.length()+"|");
 			fileWriter.write(cpuTime+","+ctr+","+sub.length()+"\n");
 			ctr++;
 		}
-
 		System.out.println("----------------TERMINATION-------------");
 		System.out.println("\nS1 Length:"+S1.length());
 		System.out.println("S1:\n"+S1);
@@ -82,5 +87,4 @@ public class ExecuteAlgo {
 		System.out.println("LCS:\n"+sub);
 		System.out.println("----------------------------------------");
 	}
-
 }
