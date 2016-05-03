@@ -13,7 +13,6 @@ public class NaiveLCS {
 			{
 				if(A.charAt(k)==B.charAt(j))
 				{
-					
 					sub.append(A.charAt(k));
 					i++;
 					break;
