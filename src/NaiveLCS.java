@@ -2,11 +2,18 @@
 public class NaiveLCS {
 	public StringBuffer findLCS(StringBuffer A,StringBuffer B)
 	{
+		// Variable to iterate through the StringBuffers
 		int i,j,k;
+
+		// To store the LCS keeping A static and B dynamic
 		StringBuffer sub1=new StringBuffer();
+		// To store the LCS keeping B static and A dynamic
 		StringBuffer sub2=new StringBuffer();
+
+		// Initialization
 		i=0;
 		j=0;
+		// Loop to compare A with B and store LCS in sub1
 		while(i<A.length())
 		{
 			k=j;
@@ -22,9 +29,10 @@ public class NaiveLCS {
 			}
 			i++;
 		}
-
+		// Initialization
 		i=0;
 		j=0;
+		// Loop to compare B with A and store LCS in sub2
 		while(i<B.length())
 		{
 			k=j;
@@ -40,7 +48,8 @@ public class NaiveLCS {
 			}
 			i++;
 		}
-		
+
+		// Return the LCS
 		if(sub1.length()>sub2.length())
 			return sub1;
 		else
