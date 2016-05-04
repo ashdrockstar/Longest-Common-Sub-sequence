@@ -52,6 +52,8 @@ public class NaiveLCS {
 		// Return the LCS
 		if(sub1.length()>sub2.length())
 			return sub1;
+		if(sub1.length()==sub2.length())
+			return sub1.append(" "+sub2.toString());
 		else
 			return sub2;
 	}

@@ -1,33 +1,49 @@
+import java.util.Hashtable;
 
 public class RecursionMemo {
-	static int matrix[][];
-	static StringBuffer sub=new StringBuffer();
+
+	Hashtable<StringBuffer,StringBuffer> storeLCS=new Hashtable<StringBuffer,StringBuffer>();
+
 	public StringBuffer findLCS(StringBuffer A,StringBuffer B)
 	{
-		matrix=new int[A.length()][B.length()];
-		
-		System.out.println(helper(A,B, A.length()-1, B.length()-1)+" "+sub);
-		return sub;
-	}
-	
-	public int max(int a,int b)
-	{
-		if(a>b)
-			return a;
-		else
-			return b;
-	}
-	public int helper(StringBuffer A, StringBuffer B,int i, int j)
-	{
-		if(i==0 || j==0)
-			return 0;
-		if(A.charAt(i)==B.charAt(j))
+		StringBuffer sub1=new StringBuffer();
+		StringBuffer sub2=new StringBuffer();
+		StringBuffer sub=new StringBuffer();
+
+		if(A.length()==0 || B.length()==0)
+			return new StringBuffer("");
+		if(storeLCS.containsKey(A.toString()+":"+B.toString()))
 		{
-			sub.append(A.charAt(i));
-			matrix[i][j]=helper(A, B, i-1, j-1)+1;
+			return storeLCS.get(A.toString()+":"+B.toString());
+		}
+
+		if(A.charAt(A.length()-1)==B.charAt(B.length()-1))
+		{
+			sub=findLCS(new StringBuffer(A.substring(0, A.length()-1)),new StringBuffer(B.substring(0, B.length()-1))).append(A.charAt(A.length()-1));
+
+			if(!storeLCS.containsKey(A.toString()+":"+B.toString()))
+				storeLCS.put(new StringBuffer(A.toString()+":"+B.toString()), sub);
+
+			return sub;
 		}
 		else
-			matrix[i][j]=max(helper(A, B, i, j-1),helper(A, B, i-1, j));
-		return matrix[i][j];
+		{
+			sub1=findLCS(new StringBuffer(A.substring(0, A.length()-1)),B);
+
+			if(!storeLCS.containsKey(new StringBuffer(A.toString()+":"+B.toString())))
+				storeLCS.put(new StringBuffer(A.toString()+":"+B.toString()), sub1);
+
+			sub2=findLCS(A,new StringBuffer(B.substring(0, B.length()-1)));
+
+			if(!storeLCS.containsKey(new StringBuffer(A.toString()+":"+B.toString())))
+				storeLCS.put(new StringBuffer(A.toString()+":"+B.toString()), sub2);
+			
+			if(sub1.length()>=sub2.length())
+				return sub1;
+			else
+				return sub2;
+
+		}
 	}
+
 }
