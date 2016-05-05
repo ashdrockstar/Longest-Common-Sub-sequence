@@ -28,7 +28,9 @@ public class ExecuteAlgo {
 //		NaiveLCS naiveLCS=new NaiveLCS();
 
 		// Finding LCS using Dynamic programming version of the algorithm
-		RecursionMemo recLCS=new RecursionMemo();
+//		RecursionMemo recLCS=new RecursionMemo();
+		
+		lsqtLCS lsqtlcs=new lsqtLCS();
 
 //		// To randomly generate binary numbers or alphabets
 //		Random choice=new Random();
@@ -76,9 +78,11 @@ public class ExecuteAlgo {
 //		}
 		// startTime=System.currentTimeMillis();
 		// sub=dynamicLCS.findLCS(S1,S2);
-//				sub=naiveLCS.findLCS(new StringBuffer("BABCCBAB"),new StringBuffer("BBACBA"));
+//				sub=naiveLCS.findLCS(new StringBuffer("BABAC"),new StringBuffer("ABBAC"));
 		
-		sub=recLCS.findLCS(new StringBuffer("BABAC"),new StringBuffer("ABBC"));
+//		sub=recLCS.findLCS(new StringBuffer("BABAC"),new StringBuffer("ABBC"));
+		
+		sub=lsqtlcs.findLCS(new StringBuffer("BBACBCA"),new StringBuffer("BABCCBAB"));
 		
 		//			endTime=System.currentTimeMillis();
 		//			cpuTime=endTime-startTime;
