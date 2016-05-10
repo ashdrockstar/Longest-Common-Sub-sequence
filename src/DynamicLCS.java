@@ -4,7 +4,7 @@
  * 2>.To find out how accurate are the theoretical estimates of complexity 
  * when compared to practical execution times.
  * 
- * Version: 1.0
+ * Version: 2.0
  * Author: Aishwary Pramanik (ap9599@g.rit.edu)
  */
 public class DynamicLCS {
@@ -15,16 +15,22 @@ public class DynamicLCS {
 		lenA=A.length();
 		lenB=B.length();
 
+		// To store the LCS
 		StringBuffer substring = new StringBuffer();
 
+		// Initializing the LCS StringBuffer
 		substring.delete(0, substring.length());
 		int i,j;
 
 		int[][] Matrix=new int[lenA+1][lenB+1];
+		
+		// Initializing the Matrices
 		for(i=0;i<=lenA;i++)
 			Matrix[i][0]=0;
 		for(j=0;j<=lenB;j++)
 			Matrix[0][j]=0;
+		
+		// Loops to iterate through the Matrices
 		for(i=1;i<=lenA;i++)
 		{
 			for(j=1;j<=lenB;j++)
@@ -37,6 +43,8 @@ public class DynamicLCS {
 		}
 		i=lenA;
 		j=lenB;
+		
+		// Looping through and finding the LCS
 		while(i>=1 && j>=1)
 		{
 			if(A.charAt(i-1)==B.charAt(j-1))

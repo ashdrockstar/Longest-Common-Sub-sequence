@@ -1,3 +1,12 @@
+/* Objective: 
+ * 1>.To observe empirically complexities of different implementations of algorithms 
+ * for the same problem: finding longest common subsequence in two sequences. 
+ * 2>.To find out how accurate are the theoretical estimates of complexity 
+ * when compared to practical execution times.
+ * 
+ * Version: 2.0
+ * Author: Aishwary Pramanik (ap9599@g.rit.edu)
+ */
 
 public class NaiveLCS {
 	public StringBuffer findLCS(StringBuffer A,StringBuffer B)
